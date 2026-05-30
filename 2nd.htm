@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cinematic Experience</title>
+  
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Cinematic Dark Space Backdrop */
+    body {
+      background: #090714;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    }
+
+    /* MOBILE VIEWPORT WRAPPER */
+    .cinema-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 412px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      background: radial-gradient(circle at 50% 40%, rgba(255, 117, 143, 0.12) 0%, transparent 60%);
+    }
+
+    /* STARFIELD BACKGROUND ANIMATION */
+    .star-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 1;
+      background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+      background-size: 550px 550px, 350px 350px;
+      background-position: 0 0, 40px 60px;
+      animation: galaxyPan 60s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes galaxyPan {
+      from { background-position: 0 0, 40px 60px; }
+      to { background-position: 550px 1100px, 390px 760px; }
+    }
+
+    /* CINEMATIC NEBULA ORBITAL SIZE */
+    .nebula-orbit {
+      position: relative;
+      z-index: 3;
+      width: 320px; 
+      height: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Dashed Rings surrounding the core */
+    .cosmic-ring {
+      position: absolute;
+      border: 2px dashed rgba(255, 117, 143, 0.4);
+      border-radius: 50%;
+      animation: spinRing 12s linear infinite;
+    }
+    .ring-1 { width: 280px; height: 280px; animation-duration: 15s; }
+    .ring-2 { width: 310px; height: 310px; animation-direction: reverse; animation-duration: 20s; border-color: rgba(112, 214, 255, 0.3); }
+
+    @keyframes spinRing {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* CLICKABLE ANCHOR LINK */
+    .gif-cinema-link {
+      text-decoration: none;
+      z-index: 4;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 🛠️ FIXED CONTAINER FRAME: Map layout exact match to fit the character */
+    .gif-cinema-frame {
+      width: 200px;  
+      height: 200px; 
+      background: #ffffff;
+      border-radius: 50%; /* Pure circle wrapper */
+      box-shadow: 0 0 50px rgba(255, 92, 124, 0.45);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      animation: coreFloat 4s infinite ease-in-out;
+      transition: transform 0.2s ease;
+    }
+
+    /* 🛠️ OVERSIZED FIX: Image scale restrictions to avoid cropping */
+    .gif-cinema-frame img {
+      width: 85%;       /* 100% se kam karke 85% kiya taaki corners se body na kate */
+      height: 85%;      /* Downscaled internally to keep white margins safe */
+      object-fit: contain; 
+      display: block;
+    }
+
+    /* Touch scale feedback for phones */
+    .gif-cinema-link:active .gif-cinema-frame {
+      transform: scale(0.95);
+    }
+
+    @keyframes coreFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.02); }
+    }
+
+    /* TYPEWRITER CINEMATIC TEXT BLOCK */
+    .story-console {
+      position: relative;
+      z-index: 4;
+      margin-top: 50px;
+      text-align: center;
+      min-height: 80px;
+      max-width: 85%;
+    }
+
+    .story-title {
+      color: #ff758f;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 15px rgba(255, 117, 143, 0.6);
+    }
+
+    .story-desc {
+      color: #bfaecf;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+      opacity: 0;
+      animation: revealDesc 1s forwards;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes revealDesc {
+      100% { opacity: 1; }
+    }
+
+    /* COSMIC STREAKS (ON TOUCH EFFECT) */
+    .cosmic-streak {
+      position: fixed;
+      z-index: 99;
+      pointer-events: none;
+      background: linear-gradient(90deg, white, var(--streak-color), transparent);
+      height: 2px;
+      border-radius: 50%;
+      animation: dashStreak var(--dur) forwards ease-out;
+    }
+
+    @keyframes dashStreak {
+      0% { width: 0px; transform: translate(0, 0) rotate(var(--angle)); opacity: 1; }
+      50% { width: 80px; opacity: 0.8; }
+      100% { width: 0px; transform: translate(var(--mx), var(--my)) rotate(var(--angle)); opacity: 0; }
+    }
+  </style>
+</head>
+<body onclick="createCinematicStreak(event)">
+
+  <div class="star-bg"></div>
+
+  <div class="cinema-viewport">
+
+    <div class="nebula-orbit">
+      <div class="cosmic-ring ring-1"></div>
+      <div class="cosmic-ring ring-2"></div>
+      
+      <a href="sample.htm" class="gif-cinema-link">
+        <div class="gif-cinema-frame">
+          <img src="tenor (3).gif" alt="Peach Goma Main Center">
+        </div>
+      </a>
+    </div>
+
+    <div class="story-console">
+      <div class="story-title">Welcome My Dear Swadhaa..</div>
+      <p class="story-desc">
+        Tap the GIF to enter a world made just for you.✨<br>
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    function createCinematicStreak(e) {
+      if(e.target.closest('.gif-cinema-link')) return;
+
+      for (let i = 0; i < 12; i++) {
+        const streak = document.createElement('div');
+        streak.classList.add('cosmic-streak');
+        
+        const colors = ['#ff5c7c', '#70d6ff', '#ffd166', '#b5179e'];
+        const chosenColor = colors[Math.floor(Math.random() * colors.length)];
+        streak.style.setProperty('--streak-color', chosenColor);
+        
+        streak.style.left = e.clientX + 'px';
+        streak.style.top = e.clientY + 'px';
+        
+        const angle = Math.random() * 360;
+        const distance = 80 + Math.random() * 150;
+        const mx = Math.cos(angle * Math.PI / 180) * distance;
+        const my = Math.sin(angle * Math.PI / 180) * distance;
+        const dur = 0.4 + Math.random() * 0.5 + 's';
+        
+        streak.style.setProperty('--angle', angle + 'deg');
+        streak.style.setProperty('--mx', mx + 'px');
+        streak.style.setProperty('--my', my + 'px');
+        streak.style.setProperty('--dur', dur);
+        
+        document.body.appendChild(streak);
+        
+        setTimeout(() => streak.remove(), 1000);
+      }
+    }
+  </script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

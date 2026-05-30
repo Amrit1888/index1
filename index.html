@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Heart Seal Button</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    .font-display { font-family: 'Didot', serif; }
+    .font-letter { font-family: 'Georgia', serif; }
+    
+    /* Vertically cutting golden line across the background */
+    .vertical-line {
+      position: absolute;
+      width: 2px;
+      /* Mobile dynamic height support */
+      height: 100dvh; 
+      background: linear-gradient(to bottom, transparent, #A05A50 20%, #A05A50 80%, transparent);
+      box-shadow: 0 0 8px rgba(160, 90, 80, 0.4);
+      z-index: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<!-- h-[100dvh] use kiya hai taaki mobile browser bars screen ko pull/distort na karein -->
+<body class="bg-[#E8D5C4] flex h-[100dvh] items-center justify-center m-0 p-0 relative overflow-hidden select-none touch-none">
+
+  <!-- Vertical background line -->
+  <div class="vertical-line"></div>
+
+  <!-- Main content wrapper positioned relatively over the line -->
+  <div class="flex flex-col items-center z-10">
+    
+    <!-- Active state tap highlight disabled for clean mobile feel -->
+    <div id="waxSeal" class="cursor-pointer transition-shadow duration-300 active:scale-95 touch-manipulation" 
+         style="width: 65px; height: 65px; border-radius: 50%; background: radial-gradient(circle, #C47B6B 0%, #8B5E57 100%); border: 2px solid #A05A50; box-shadow: 0 4px 12px rgba(139, 94, 87, 0.3); display: flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent;">
+      <span class="font-display text-[30px] text-[#F5E6D3] select-none">♥</span>
+    </div>
+    
+    <p id="sealText" class="font-letter text-[16px] text-[#8B5E57] mt-4 select-none tracking-wide bg-[#E8D5C4] px-3">
+      Click Here To Step Inside....
+    </p>
+
+  </div>
+
+  <script>
+    let sealBroken = false;
+    const waxSeal = document.getElementById('waxSeal');
+    const sealText = document.getElementById('sealText');
+
+    // Button load hone par chota sa entry animation
+    gsap.from(waxSeal, {
+      rotation: -10,
+      scale: 0.5,
+      duration: 0.8,
+      ease: 'back.out(1.7)'
+    });
+
+    // Click/Tap logic for mobile
+    waxSeal.addEventListener('click', () => {
+      if (sealBroken) return; // Ek baar tootne ke baad dubara click na ho
+      sealBroken = true;
+
+      // React code jaisa exact 180 degree rotation aur fade effect
+      gsap.to(waxSeal, {
+        rotation: 180,
+        scale: 0.8,
+        opacity: 0.3,
+        duration: 0.6,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          // Text badal kar 'Seal broken' ho jayega
+          sealText.innerText = 'Seal broken';
+          
+          // Exact 1 second baad page redirect karne ke liye timer
+          setTimeout(() => {
+            // 'next_page.html' ko apne agle page ke filename/URL se replace kar lena bro
+            window.location.href = 'index.html';
+          }, 1000); // 1000 milliseconds = 1 second
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

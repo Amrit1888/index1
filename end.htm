@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thank You, My Love</title>
+    <style>
+        /* Reset and Mobile-Optimized Velvet Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #110007;
+            min-height: 100vh;
+            /* Using dynamic viewport height to prevent mobile browser address bar jumps */
+            min-height: -webkit-fill-available; 
+            width: 100vw;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 40%, #3d0c1b 0%, #1a020a 70%, #0d0005 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', 'Georgia', serif;
+            position: relative;
+            padding: 15px; /* Edge buffer safety for small mobile screens */
+        }
+
+        html {
+            height: -webkit-fill-available;
+        }
+
+        /* 🌸 THE MAGICAL ENVELOPE PORTAL CONTAINER (MOBILE PERFECT) */
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 350px; /* Locked down to fit exactly on smaller devices like iPhone SE */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* Pure Romantic Canvas Shield */
+        .romantic-letter-core {
+            position: relative;
+            width: 100%;
+            background: rgba(255, 240, 243, 0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 182, 193, 0.25);
+            border-radius: 28px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45),
+                        inset 0 1px 3px rgba(255, 255, 255, 0.1);
+            animation: softUnfold 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes softUnfold {
+            0% { opacity: 0; transform: translateY(30px) scale(0.93); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        /* 🖼️ CENTRAL FLOATING PORTAL FOR DYNAMIC GIF (RESPONSIVE CLAMP) */
+        .gif-heart-frame {
+            position: relative;
+            margin: 10px auto 20px auto;
+            width: 190px;  /* Slightly downscaled to keep text and spacing perfectly in view */
+            height: 190px; 
+            background: #ffffff; /* Solid mask layer so borders stay intact */
+            border-radius: 35px; /* Elegant soft curved rectangle */
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(255, 77, 109, 0.45);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: gentleBreathing 4.5s infinite ease-in-out;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Scaled containment so oversized gifs fit perfectly */
+        .gif-heart-frame img {
+            width: 86%;
+            height: 86%;
+            object-fit: contain;
+            display: block;
+        }
+
+        @keyframes gentleBreathing {
+            0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 12px 30px rgba(255, 77, 109, 0.4); }
+            50% { transform: translateY(-6px) scale(1.03); box-shadow: 0 20px 45px rgba(255, 77, 109, 0.6), 0 0 12px #fff; }
+        }
+
+        /* ROMANTIC TEXT SHAPES (MOBILE-FIRST TYPOGRAPHY) */
+        .letter-title {
+            color: #ffffff;
+            font-size: 2rem; /* Clean typography footprint for screens */
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
+        }
+
+        .letter-message {
+            color: #ffebf0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            font-style: italic;
+            font-weight: 300;
+            width: 95%;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* 🌸 REAL FALLING ROSE PETALS ENGINE */
+        .falling-petal {
+            position: absolute;
+            top: -50px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.8;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+        }
+
+        /* 💗 DOCKING HEARTRISE TAP EFFECT */
+        .heart-wave {
+            position: fixed;
+            border: 1px solid rgba(255, 117, 143, 0.5);
+            background: rgba(255, 77, 109, 0.03);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%) scale(0);
+            animation: pulseWave 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+
+        @keyframes pulseWave {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 280px; height: 280px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body onclick="createHeartWave(event)">
+
+    <div class="envelope-wrapper">
+        <div class="romantic-letter-core">
+            
+            <h1 class="letter-title">Thank You... ❤️</h1>
+            
+            <div class="gif-heart-frame">
+                <img src="tenor (4).gif" alt="Deep Romantic Heart Note">
+            </div>
+
+            <p class="letter-message">
+                "Thankuu.."<Br>
+                    In Colclusion: I Miss u ywrrr..✨<br>
+                     tell me what about u in DM
+            </p>
+
+        </div>
+    </div>
+
+    <script>
+        const romanticGems = ['🌸', '🌹', '💕', '✨'];
+        
+        function spawnRosePetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('falling-petal');
+            
+            petal.innerText = romanticGems[Math.floor(Math.random() * romanticGems.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            
+            const size = Math.random() * 16 + 12; // Mobile calibrated sizing
+            petal.style.fontSize = size + 'px';
+            
+            const duration = Math.random() * 4 + 5; 
+            petal.style.animation = `petalDrift ${duration}s linear forwards`;
+            
+            document.body.appendChild(petal);
+
+            const driftX = (Math.random() * 80) - 40;
+            petal.animate([
+                { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 0.8 },
+                { transform: `translateY(105vh) translateX(${driftX}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: duration * 1000,
+                easing: 'linear'
+            });
+
+            setTimeout(() => petal.remove(), duration * 1000);
+        }
+
+        function createHeartWave(e) {
+            if (e.target.closest('.romantic-letter-core')) return;
+            
+            const wave = document.createElement('div');
+            wave.classList.add('heart-wave');
+            wave.style.left = e.clientX + 'px';
+            wave.style.top = e.clientY + 'px';
+            
+            document.body.appendChild(wave);
+            setTimeout(() => wave.remove(), 800);
+        }
+
+        setInterval(spawnRosePetal, 500);
+    </script>
+</body>
+</html>
